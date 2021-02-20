@@ -1,0 +1,38 @@
+---
+title: "SPS-DATA607-ASSIGNMENT-3"
+author: "Tage N Singh"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r,load-requirements,echo=FALSE,message=TRUE, warning=FALSE}
+library(datasets)
+library(ggplot2)
+library(dplyr)
+library("tidyverse")
+#library(RMySQL)
+```
+```{r,loaddata1}
+
+#cmajors <- read.csv("college-majors.csv")
+
+cmajors <- read.csv("https://raw.githubusercontent.com/tagensingh/SPS-DATA607-ASSIGNMENT-3/main/college-majors.csv")
+
+class(cmajors)
+
+tibble(cmajors)
+
+#_________________________________________________________
+
+#**The Answer to Question 1**
+
+dplyr::filter(cmajors, grepl('DATA|STATISTICS', Major))
+
+#__________________________________________________________
+
+```
+
