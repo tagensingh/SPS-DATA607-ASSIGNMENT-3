@@ -54,7 +54,8 @@ frame1 <-list(match = intersect(matches, str_subset(fruit, pattern = "l.+e")))
 
 frame1
 
-#frame2 = c(frame1)-
+
+class(frame1)
 
 ```
 
