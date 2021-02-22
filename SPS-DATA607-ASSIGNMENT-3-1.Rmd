@@ -44,13 +44,17 @@ dplyr::filter(cmajors, grepl('DATA|STATISTICS', Major))
 
 ```{r,Q2}
 
-
+### The initial dataset is as follows
 (matches <- str_subset(fruit, pattern = "l.*e"))
 
+## manipolating 
 
-list(match = intersect(matches, str_subset(fruit, pattern = "l.+e")),
-     no_match = setdiff(matches, str_subset(fruit, pattern = "l.+e")))
+frame1 <-list(match = intersect(matches, str_subset(fruit, pattern = "l.+e")))
+#no_match = setdiff(matches, str_subset(fruit, pattern = "l.+e")))
 
+frame1
+
+#frame2 = c(frame1)-
 
 ```
 
