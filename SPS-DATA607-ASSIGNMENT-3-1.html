@@ -431,12 +431,26 @@ dplyr::filter(cmajors, grepl(&#39;DATA|STATISTICS&#39;, Major))</code></pre>
 </div>
 <div id="question-2" class="section level2">
 <h2>Question 2</h2>
-<pre class="r"><code>#fruit &lt;- read.csv(&quot;https://raw.githubusercontent.com/tagensingh/SPS-DATA607-ASSIGNMENT-3/main/fruit.csv&quot;)
-
-fruit2 &lt;- c(&quot;bell pepper&quot;, &quot;bilberry&quot;, &quot;blackberry&quot;, &quot;blood orange&quot;)
-
-fruit2</code></pre>
-<pre><code>## [1] &quot;bell pepper&quot;  &quot;bilberry&quot;     &quot;blackberry&quot;   &quot;blood orange&quot;</code></pre>
+<pre class="r"><code>(matches &lt;- str_subset(fruit, pattern = &quot;l.*e&quot;))</code></pre>
+<pre><code>##  [1] &quot;apple&quot;             &quot;bell pepper&quot;       &quot;bilberry&quot;         
+##  [4] &quot;blackberry&quot;        &quot;blood orange&quot;      &quot;blueberry&quot;        
+##  [7] &quot;cantaloupe&quot;        &quot;chili pepper&quot;      &quot;clementine&quot;       
+## [10] &quot;cloudberry&quot;        &quot;elderberry&quot;        &quot;huckleberry&quot;      
+## [13] &quot;lemon&quot;             &quot;lime&quot;              &quot;lychee&quot;           
+## [16] &quot;mulberry&quot;          &quot;olive&quot;             &quot;pineapple&quot;        
+## [19] &quot;purple mangosteen&quot; &quot;salal berry&quot;</code></pre>
+<pre class="r"><code>list(match = intersect(matches, str_subset(fruit, pattern = &quot;l.+e&quot;)),
+     no_match = setdiff(matches, str_subset(fruit, pattern = &quot;l.+e&quot;)))</code></pre>
+<pre><code>## $match
+##  [1] &quot;bell pepper&quot;       &quot;bilberry&quot;          &quot;blackberry&quot;       
+##  [4] &quot;blood orange&quot;      &quot;blueberry&quot;         &quot;cantaloupe&quot;       
+##  [7] &quot;chili pepper&quot;      &quot;clementine&quot;        &quot;cloudberry&quot;       
+## [10] &quot;elderberry&quot;        &quot;huckleberry&quot;       &quot;lime&quot;             
+## [13] &quot;lychee&quot;            &quot;mulberry&quot;          &quot;olive&quot;            
+## [16] &quot;purple mangosteen&quot; &quot;salal berry&quot;      
+## 
+## $no_match
+## [1] &quot;apple&quot;     &quot;lemon&quot;     &quot;pineapple&quot;</code></pre>
 </div>
 <div id="question-3" class="section level2">
 <h2>Question 3</h2>
