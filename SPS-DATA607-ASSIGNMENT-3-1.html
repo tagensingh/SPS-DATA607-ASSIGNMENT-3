@@ -11,7 +11,7 @@
 
 <meta name="author" content="Tage N Singh" />
 
-<meta name="date" content="2021-02-20" />
+<meta name="date" content="2021-02-21" />
 
 <title>SPS-DATA607-ASSIGNMENT-3</title>
 
@@ -375,7 +375,7 @@ summary {
 
 <h1 class="title toc-ignore">SPS-DATA607-ASSIGNMENT-3</h1>
 <h4 class="author">Tage N Singh</h4>
-<h4 class="date">2021-02-20</h4>
+<h4 class="date">2021-02-21</h4>
 
 </div>
 
@@ -395,6 +395,8 @@ summary {
 <pre><code>## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
 ## x dplyr::filter() masks stats::filter()
 ## x dplyr::lag()    masks stats::lag()</code></pre>
+<div id="question-1" class="section level2">
+<h2>Question 1</h2>
 <pre class="r"><code>#cmajors &lt;- read.csv(&quot;college-majors.csv&quot;)
 
 cmajors &lt;- read.csv(&quot;https://raw.githubusercontent.com/tagensingh/SPS-DATA607-ASSIGNMENT-3/main/college-majors.csv&quot;)
@@ -418,7 +420,7 @@ class(cmajors)</code></pre>
 ## # ... with 164 more rows</code></pre>
 <pre class="r"><code>#_________________________________________________________
 
-#**The answer to Question 1**
+#**The Answer to Question 1**
 
 dplyr::filter(cmajors, grepl(&#39;DATA|STATISTICS&#39;, Major))</code></pre>
 <pre><code>##   FOD1P                                         Major          Major_Category
@@ -426,6 +428,77 @@ dplyr::filter(cmajors, grepl(&#39;DATA|STATISTICS&#39;, Major))</code></pre>
 ## 2  2101      COMPUTER PROGRAMMING AND DATA PROCESSING Computers &amp; Mathematics
 ## 3  3702               STATISTICS AND DECISION SCIENCE Computers &amp; Mathematics</code></pre>
 <pre class="r"><code>#__________________________________________________________</code></pre>
+</div>
+<div id="question-2" class="section level2">
+<h2>Question 2</h2>
+<pre class="r"><code>#fruit &lt;- read.csv(&quot;https://raw.githubusercontent.com/tagensingh/SPS-DATA607-ASSIGNMENT-3/main/fruit.csv&quot;)
+
+fruit2 &lt;- c(&quot;bell pepper&quot;, &quot;bilberry&quot;, &quot;blackberry&quot;, &quot;blood orange&quot;)
+
+fruit2</code></pre>
+<pre><code>## [1] &quot;bell pepper&quot;  &quot;bilberry&quot;     &quot;blackberry&quot;   &quot;blood orange&quot;</code></pre>
+</div>
+<div id="question-3" class="section level2">
+<h2>Question 3</h2>
+<div id="the-same-character-appears-three-times-in-a-row.-e.g.-zzz" class="section level4">
+<h4>1. (.)\1\1 - The same character appears three times in a row. E.g. “zzz”</h4>
+</div>
+<div id="this-is-a-pair-of-characters-followed-by-the-same-pair-of-characters-in-reversed-order.-e.g.-noon-or-saas." class="section level4">
+<h4>2. “(.)(.)\2\1” - This is a pair of characters followed by the same pair of characters in reversed order. E.g. “noon” or “saas”.</h4>
+</div>
+<div id="this-is-two-characters-repeated.-e.g.-a1a1-or-u2u2" class="section level4">
+<h4>3. (..)\1 - This is two characters repeated. E.g. “a1a1” or &quot;U2U2</h4>
+</div>
+<div id="a-character-followed-by-any-character-the-original-character-any-other-character-the-original-character-again.-e.g.-abaca-z0z0z." class="section level4">
+<h4>4. “(.).\1.\1” - A character followed by any character, the original character, any other character, the original character again. E.g. “abaca”, “z0z0z”.</h4>
+</div>
+<div id="three-characters-followed-by-zero-or-more-characters-of-any-kind-followed-by-the-same-three-characters-but-in-reverse-order.-e.g.-abctagessinghcba-or-123456321-or-a1a6789a1a" class="section level4">
+<h4>5. &quot;(.)(.)(.).*\3\2\1&quot; - Three characters followed by zero or more characters of any kind followed by the same three characters but in reverse order. E.g. “abctagessinghcba” or “123456321” or “a1a6789a1a”</h4>
+</div>
+</div>
+<div id="question-4" class="section level2">
+<h2>Question 4</h2>
+<pre class="r"><code>### Q4-1
+
+#### Words that start and end with the same character, from the &quot;words&quot; dataset
+
+str_subset(words, &quot;^(.)((.*\\1$)|\\1?$)&quot;)</code></pre>
+<pre><code>##  [1] &quot;a&quot;          &quot;america&quot;    &quot;area&quot;       &quot;dad&quot;        &quot;dead&quot;      
+##  [6] &quot;depend&quot;     &quot;educate&quot;    &quot;else&quot;       &quot;encourage&quot;  &quot;engine&quot;    
+## [11] &quot;europe&quot;     &quot;evidence&quot;   &quot;example&quot;    &quot;excuse&quot;     &quot;exercise&quot;  
+## [16] &quot;expense&quot;    &quot;experience&quot; &quot;eye&quot;        &quot;health&quot;     &quot;high&quot;      
+## [21] &quot;knock&quot;      &quot;level&quot;      &quot;local&quot;      &quot;nation&quot;     &quot;non&quot;       
+## [26] &quot;rather&quot;     &quot;refer&quot;      &quot;remember&quot;   &quot;serious&quot;    &quot;stairs&quot;    
+## [31] &quot;test&quot;       &quot;tonight&quot;    &quot;transport&quot;  &quot;treat&quot;      &quot;trust&quot;     
+## [36] &quot;window&quot;     &quot;yesterday&quot;</code></pre>
+<pre class="r"><code>### Q4-2
+
+#### Pairs of Repeated letters - &quot;london&#39; in this case
+
+str_subset(&quot;london&quot;, &quot;([A-Za-z][A-Za-z]).*\\1&quot;)</code></pre>
+<pre><code>## [1] &quot;london&quot;</code></pre>
+<pre class="r"><code>#### Pairs of Repeated letters - from the &quot;words&quot; dataset.
+
+str_subset(words, &quot;([A-Za-z][A-Za-z]).*\\1&quot;)</code></pre>
+<pre><code>##  [1] &quot;appropriate&quot; &quot;church&quot;      &quot;condition&quot;   &quot;decide&quot;      &quot;environment&quot;
+##  [6] &quot;london&quot;      &quot;paragraph&quot;   &quot;particular&quot;  &quot;photograph&quot;  &quot;prepare&quot;    
+## [11] &quot;pressure&quot;    &quot;remember&quot;    &quot;represent&quot;   &quot;require&quot;     &quot;sense&quot;      
+## [16] &quot;therefore&quot;   &quot;understand&quot;  &quot;whether&quot;</code></pre>
+<pre class="r"><code>### Q4-3
+
+#### One letter repeated in at least three places - &quot;nineteen&quot; in this case
+
+str_subset(&quot;nineteen&quot;, &quot;([a-z]).*\\1.*\\1&quot;)</code></pre>
+<pre><code>## [1] &quot;nineteen&quot;</code></pre>
+<pre class="r"><code>#### One letter repeated in at least three places - from the &quot;words&quot; dataset.
+
+str_subset(words, &quot;([a-z]).*\\1.*\\1&quot;)</code></pre>
+<pre><code>##  [1] &quot;appropriate&quot; &quot;available&quot;   &quot;believe&quot;     &quot;between&quot;     &quot;business&quot;   
+##  [6] &quot;degree&quot;      &quot;difference&quot;  &quot;discuss&quot;     &quot;eleven&quot;      &quot;environment&quot;
+## [11] &quot;evidence&quot;    &quot;exercise&quot;    &quot;expense&quot;     &quot;experience&quot;  &quot;individual&quot; 
+## [16] &quot;paragraph&quot;   &quot;receive&quot;     &quot;remember&quot;    &quot;represent&quot;   &quot;telephone&quot;  
+## [21] &quot;therefore&quot;   &quot;tomorrow&quot;</code></pre>
+</div>
 
 
 

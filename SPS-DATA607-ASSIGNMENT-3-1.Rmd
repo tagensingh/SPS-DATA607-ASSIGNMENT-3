@@ -15,8 +15,12 @@ library(ggplot2)
 library(dplyr)
 library("tidyverse")
 #library(RMySQL)
+
 ```
-```{r,loaddata1}
+
+## Question 1
+
+```{r,Q1}
 
 #cmajors <- read.csv("college-majors.csv")
 
@@ -36,3 +40,69 @@ dplyr::filter(cmajors, grepl('DATA|STATISTICS', Major))
 
 ```
 
+## Question 2
+
+```{r,Q2}
+
+
+(matches <- str_subset(fruit, pattern = "l.*e"))
+
+
+list(match = intersect(matches, str_subset(fruit, pattern = "l.+e")),
+     no_match = setdiff(matches, str_subset(fruit, pattern = "l.+e")))
+
+
+```
+
+## Question 3 
+
+#### 1. (.)\1\1 - The same character appears three times in a row. E.g. "zzz"
+
+#### 2. "(.)(.)\\2\\1" - This is a  pair of characters followed by the same pair of characters in reversed order. E.g. "noon" or "saas".
+
+#### 3. (..)\1 - This is two characters repeated. E.g. "a1a1" or "U2U2
+
+#### 4. "(.).\\1.\\1" - A character followed by any character, the original character, any other character, the original character again. E.g. "abaca", "z0z0z".
+
+#### 5. "(.)(.)(.).*\\3\\2\\1" - Three characters followed by zero or more characters of any kind followed by the same three characters but in reverse order. E.g. "abctagessinghcba" or "123456321" or "a1a6789a1a"
+
+## Question 4
+
+```{r,Q41}
+
+### Q4-1
+
+#### Words that start and end with the same character, from the "words" dataset
+
+str_subset(words, "^(.)((.*\\1$)|\\1?$)")
+
+```
+
+```{r,Q42}
+
+### Q4-2
+
+#### Pairs of Repeated letters - "london' in this case
+
+str_subset("london", "([A-Za-z][A-Za-z]).*\\1")
+
+#### Pairs of Repeated letters - from the "words" dataset.
+
+str_subset(words, "([A-Za-z][A-Za-z]).*\\1")
+
+```
+
+
+```{r,Q43}
+
+### Q4-3
+
+#### One letter repeated in at least three places - "nineteen" in this case
+
+str_subset("nineteen", "([a-z]).*\\1.*\\1")
+
+#### One letter repeated in at least three places - from the "words" dataset.
+
+str_subset(words, "([a-z]).*\\1.*\\1")
+
+```
